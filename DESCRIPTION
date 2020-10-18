@@ -1,15 +1,14 @@
-Package: yourPkg
-Title: What the Package Does (One Line, Title Case)
+Package: CovidYe
+Title: The basic information about COVID-19
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Chengzhi",
+           family = "Ye",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
+           email = "cyee0011@student.monash.edu",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+Description: Provide some basic information about COVID-19 in different coutries through some interactive plots and tables.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
