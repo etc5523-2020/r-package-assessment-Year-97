@@ -6,3 +6,6 @@
 ^CovidYe\.Rproj$
 ^data-raw$
 ^doc$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
