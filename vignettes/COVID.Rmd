@@ -1,0 +1,39 @@
+---
+title: "General Situation of COVID-19 in the world"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{General Situation of COVID-19 in the world}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette can describe the use of the `CovidYe` package, including how to launch the shiny application, what the application can do, and the guidelines for its uses. 
+
+## Installing CovidYe
+
+
+```{r}
+# install.packages("devtools")
+devtools::install_github("etc5523-2020/r-package-assessment-Year-97")
+```
+
+## Launching shiny app
+
+```{r launching}
+library(CovidYe)
+launch_app()
+```
+
+
+
+This package also provides the `coronavirus` dataset, which contains daily information for 188 countries over time.  
+
+
+

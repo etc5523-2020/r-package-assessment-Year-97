@@ -1,5 +1,5 @@
 Package: CovidYe
-Title: The basic information about COVID-19
+Title: The Shiny Application and the General Information about COVID-19
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Chengzhi",
@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "cyee0011@student.monash.edu",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: Provide some basic information about COVID-19 of some countries through some interactive plots and tables.
+Description: Provide some basic information about COVID-19 of some countries through some interactive plots and tables in the Shiny app.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -17,3 +17,7 @@ Depends:
     R (>= 2.10)
 Imports: 
     tibble
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
