@@ -3,17 +3,27 @@
 \docType{data}
 \name{coronavirus}
 \alias{coronavirus}
-\title{General Situation of COVID-19 in the world}
+\title{General Situation of corona virus in the World}
 \format{
-An object of class \code{data.frame} with 181335 rows and 7 columns.
+a tibble with 181335 observations and 7 variables:
+\itemize{
+\item \strong{date}: The date of the summary
+\item \strong{province}: The province or state, when applicable
+\item \strong{country}: The country or region name
+\item \strong{lat}: Latitude point
+\item \strong{long}: Longitude point
+\item \strong{type}: the type of case (i.e., confirmed, death)
+\item \strong{cases}: the number of daily cases (corresponding to the case type)
+}
 }
 \source{
-coronavirus
+\href{https://www.who.int/}{WHO} and \href{https://github.com/RamiKrispin/coronavirus}{coronavirus}
 }
 \usage{
 coronavirus
 }
 \description{
-This dataset contains daily information of COVID-19 about 188 countries.
+A dataset containing general information of corona virus about 188 countries. The
+information includes daily confirmed cases, death and recovered cases.
 }
 \keyword{datasets}
