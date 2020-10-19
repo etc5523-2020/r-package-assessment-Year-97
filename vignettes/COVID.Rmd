@@ -10,30 +10,103 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.width = 8.5,
+  fig.height = 7
 )
 ```
 
-This vignette can describe the use of the `CovidYe` package, including how to launch the shiny application, what the application can do, and the guidelines for its uses. 
+This vignette can describe the use of the `CovidYe` package, including how to launch the shiny application, what the application can do, and the guidelines for its users. 
 
 ## Installing CovidYe
 
-
-```{r}
+```{r, eval=FALSE}
 # install.packages("devtools")
 devtools::install_github("etc5523-2020/r-package-assessment-Year-97")
 ```
 
 ## Launching shiny app
 
-```{r launching}
+```{r, include=FALSE}
 library(CovidYe)
+library(tibble)
+library(tidyverse)
+library(plotly)
+```
+
+```{r launching, eval=FALSE}
 launch_app()
+```
+
+## Exploration of the data in the CovidYe package
+
+This package also provides the `coronavirus` dataset, which contains daily information for 118 countries over time. This data is sourced from [WHO](https://www.who.int/) and [coronavirus](https://github.com/RamiKrispin/coronavirus).
+
+The Daily Situation and Cumulative Cases:
+
+```{r, echo=FALSE, warning=FALSE}
+coronavirus %>% 
+  select(date, country, type, cases) %>% 
+  group_by(type, date) %>%
+  summarise(total_cases = sum(cases)) %>%
+  pivot_wider(names_from = type, values_from = total_cases) %>%
+  arrange(date) %>%
+  mutate(totalconfirmed = cumsum(confirmed),
+         totalrecovered = cumsum(recovered),
+         totaldeath = cumsum(death)) %>% 
+  head(15) %>% 
+  kableExtra::kable()
+
+```
+
+The overall change trend of COVID-19: 
+
+```{r, echo=FALSE, warning=FALSE}
+corona_daily <- coronavirus %>% 
+  select(date, country, type, cases) %>% 
+  group_by(type, date) %>%
+  summarise(total_cases = sum(cases)) %>%
+  pivot_wider(names_from = type, values_from = total_cases) %>%
+  arrange(date) %>%
+  mutate(totalconfirmed = cumsum(confirmed),
+         totalrecovered = cumsum(recovered),
+         totaldeath = cumsum(death))
+
+g <- plot_ly(corona_daily, 
+                 x = ~ date, 
+                 y = ~ totalconfirmed,
+                 name = 'Confirmed',
+                 fillcolor = 'purple',
+                 type = 'scatter',
+                 mode = 'none',
+                 stackgroup = 'one') %>% 
+      add_trace(y = ~totalrecovered, 
+                name = 'Recovered', 
+                fillcolor = 'lightgreen') %>%
+      add_trace(y = ~ totaldeath, 
+                name = "Death",
+                fillcolor = 'black') %>%
+      layout(title = "Distribution of Covid19 Cases Worldwide",
+             legend = list(x = 0.1, y = 0.9),
+             yaxis = list(title = "Number of Cases"),
+             xaxis = list(title = "Date"),
+             hovermode = "compare")
+    
+    ggplotly(g)
 ```
 
 
 
-This package also provides the `coronavirus` dataset, which contains daily information for 188 countries over time.  
+
+
+
+
+
+
+
+
+
+
 
 
 

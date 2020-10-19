@@ -16,10 +16,9 @@ knitr::opts_chunk$set(
 # CovidYe
 
 <!-- badges: start -->
-[![R build status](https://github.com/etc5523-2020/r-package-assessment-Year-97/workflows/R-CMD-check/badge.svg)](https://github.com/etc5523-2020/r-package-assessment-Year-97/actions)
 <!-- badges: end -->
 
-The goal of CovidYe is to provide some basic information about COVID-19 of some countries through some interactive plots and tables.
+The goal of CovidYe is to provide some basic information about COVID-19 of some countries and some functions about the interactive plots and tables in the Shiny app.
 
 ## Installation
 
@@ -29,7 +28,7 @@ The goal of CovidYe is to provide some basic information about COVID-19 of some 
 <!-- install.packages("CovidYe") -->
 <!-- ``` -->
 
-And the development version can be installed from [GitHub](https://github.com/) with:
+The development version can be installed from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -37,11 +36,50 @@ devtools::install_github("etc5523-2020/r-package-assessment-Year-97")
 ```
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+### A basic example about daily situation:
 
-```{r example}
+```{r, include=FALSE}
 library(CovidYe)
 library(tibble)
+library(tidyverse)
+library(plotly)
+library(ggplot2)
+
+
+```
+
+```{r example, echo=FALSE, warning=FALSE}
 as_tibble(coronavirus)
 ```
 
+### The Daily Situation and Cumulative Cases
+
+```{r, echo=FALSE, warning=FALSE}
+coronavirus %>% 
+  select(date, country, type, cases) %>% 
+  group_by(type, date) %>%
+  summarise(total_cases = sum(cases)) %>%
+  pivot_wider(names_from = type, values_from = total_cases) %>%
+  arrange(date) %>%
+  mutate(totalconfirmed = cumsum(confirmed),
+         totalrecovered = cumsum(recovered),
+         totaldeath = cumsum(death)) %>% 
+  head(10) %>% 
+  kableExtra::kable()
+
+```
+
+### The overall change trend of COVID-19
+
+```{r, warning=FALSE, echo=FALSE}
+coronavirus %>% 
+   select(date, country, type, cases) %>% 
+  filter(country %in% c("US", "India", "Brazil", "Russia", "Peru")) %>% 
+  filter(type == "confirmed") %>% 
+  ggplot(aes(x = date, y = cases, color = country, lable = country)) +
+  
+  geom_line() +
+  theme_bw()
+
+
+```
