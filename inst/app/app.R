@@ -30,12 +30,6 @@ corona_country <- coronavirus %>%
   filter(country %in% c("US", "India", "Brazil", "Russia", "Peru", "Colombia", "Mexico", "South Africa", "Spain", "Argentina")) %>% 
   filter(type == "confirmed")
 
-corona_table <- coronavirus %>% 
-  select(country, type, cases) %>% 
-  group_by(type, country) %>%
-  summarise(total_cases = sum(cases)) %>%
-  pivot_wider(names_from = type, values_from = total_cases) %>%
-  arrange(-confirmed)  
 
 ui <- fluidPage(
   theme = shinytheme("readable"),
@@ -105,9 +99,8 @@ ui <- fluidPage(
               
               tabPanel("Country", fluid = TRUE,
                        sidebarLayout(
-                         sidebarPanel(selectInput(inputId = "country", "Which country do you choose",
-                                                   choices  = c(corona_table$country),
-                                                   selected = "US"), 
+                         sidebarPanel(Inputselect("country", "Which country do you choose",
+                                                   c(corona_table$country)), 
                                       p("In the Country section, I use",
                                         span("kableExtra package to make a different table.", style = "color:blue"),
                                         "It lists all the countries on record, and I've listed them in descending order of confirmed cases. There is",
@@ -193,11 +186,7 @@ server <- function(input, output, session) {
   })
   
   output$table <- renderText({
-    kable(corona_table, align = 'lccr') %>% 
-      kable_styling(
-        font_size = 15,
-        bootstrap_options = c("striped", "hover", "condensed")
-      )
+    Easykable(15)
   })
 
 

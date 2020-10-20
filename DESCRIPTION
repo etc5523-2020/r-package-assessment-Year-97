@@ -22,5 +22,6 @@ Suggests:
     rmarkdown,
     tidyverse,
     ggplot2,
-    plotly
+    plotly,
+    testthat
 VignetteBuilder: knitr
