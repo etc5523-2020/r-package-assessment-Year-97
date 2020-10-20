@@ -8,6 +8,8 @@
 #'
 #' @importFrom magrittr %>% 
 #'
+#' @importFrom utils head
+#'
 #' @export
 
 Easykable <- function(n_country)
