@@ -2,7 +2,7 @@
 % Please edit documentation in R/Easykable.R
 \name{Easykable}
 \alias{Easykable}
-\title{Easykable}
+\title{Create a formatted and stylish table contains the Covid-19 information in the kableExtra function.}
 \usage{
 Easykable(n_country)
 }

@@ -73,9 +73,7 @@ ui <- fluidPage(
 
               tabPanel("Top_10 Comparison", fluid = TRUE,
                        sidebarLayout(
-                         sidebarPanel(selectInput("country", "Which country do you choose?", 
-                                                  choices = c(corona_country$country), 
-                                                  selected = "Argentina")
+                         sidebarPanel(Inputselect("country")
                          ),
                          mainPanel(
                            plotOutput("plot", height = 800, width = 800),
@@ -99,8 +97,7 @@ ui <- fluidPage(
               
               tabPanel("Country", fluid = TRUE,
                        sidebarLayout(
-                         sidebarPanel(Inputselect("country", "Which country do you choose",
-                                                   c(corona_table$country)), 
+                         sidebarPanel(Inputselect("country"), 
                                       p("In the Country section, I use",
                                         span("kableExtra package to make a different table.", style = "color:blue"),
                                         "It lists all the countries on record, and I've listed them in descending order of confirmed cases. There is",

@@ -1,4 +1,4 @@
-#' Easykable
+#' Create a formatted and stylish table contains the Covid-19 information in the kableExtra function.
 #'
 #' @description Creates a styled and formatted table to represent the summary case situation of COVID19 in each country.
 #'

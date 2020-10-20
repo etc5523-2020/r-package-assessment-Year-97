@@ -3,5 +3,6 @@
 export(Easykable)
 export(Inputselect)
 export(launch_app)
+import(shiny)
 import(tibble)
 importFrom(magrittr,"%>%")

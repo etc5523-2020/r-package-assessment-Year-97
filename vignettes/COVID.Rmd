@@ -27,6 +27,8 @@ devtools::install_github("etc5523-2020/r-package-assessment-Year-97")
 
 ## Launching shiny app
 
+The main goal of `CovidYe` package is to provide a shiny app called Covid-19 to convey the daily information of Covid-19 in `r length(unique(CovidYe::coronavirus$country))` countries and the overall trend of different type of cases.
+
 ```{r, include=FALSE}
 library(CovidYe)
 library(tibble)
@@ -42,7 +44,9 @@ launch_app()
 
 This package also provides the `coronavirus` dataset, which contains daily information for 118 countries over time. This data is sourced from [WHO](https://www.who.int/) and [coronavirus](https://github.com/RamiKrispin/coronavirus).
 
-The Daily Situation and Cumulative Cases:
+The following table and interactive plot are provided by the functions contained in that Shiny app. The visualization effects of displaying Covid-19 general information are attractive for the users. 
+
+### The Daily Situation and Cumulative Cases:
 
 ```{r, echo=FALSE, warning=FALSE}
 coronavirus %>% 
@@ -55,11 +59,15 @@ coronavirus %>%
          totalrecovered = cumsum(recovered),
          totaldeath = cumsum(death)) %>% 
   head(15) %>% 
-  kableExtra::kable()
+  kableExtra::kable(align = 'lrrrrrr', 
+                     format.args = list(big.mark = ",")) %>% 
+   kableExtra::kable_styling(
+     font_size = 15,
+     bootstrap_options = c("striped", "hover", "condensed")) 
 
 ```
 
-The overall change trend of COVID-19: 
+### The overall change trend of COVID-19: 
 
 ```{r, echo=FALSE, warning=FALSE}
 corona_daily <- coronavirus %>% 
@@ -76,7 +84,7 @@ g <- plot_ly(corona_daily,
                  x = ~ date, 
                  y = ~ totalconfirmed,
                  name = 'Confirmed',
-                 fillcolor = 'purple',
+                 fillcolor = 'pink',
                  type = 'scatter',
                  mode = 'none',
                  stackgroup = 'one') %>% 
@@ -95,8 +103,40 @@ g <- plot_ly(corona_daily,
     ggplotly(g)
 ```
 
+### The Current Situation of COVID-19 in Top 10 countries with most confirmed cases:
+
+```{r bubblemap, echo=FALSE, warning=FALSE}
+coronavirus_new <- coronavirus %>% 
+  group_by(country, type) %>%
+  summarise(total_cases = sum(cases)) %>%
+  pivot_wider(names_from = type, values_from = total_cases) %>%
+  arrange(-confirmed) %>%
+  head(20) %>%
+  mutate(recover_rate = recovered / confirmed,
+         death_rate = death / confirmed) %>%
+  ungroup() 
 
 
+  plotly::plot_ly(y = ~ round(100 * coronavirus_new$recover_rate, 1),
+                  x = ~ round(100 * coronavirus_new$death_rate, 1),
+                  size = ~  log(coronavirus_new$confirmed),
+                  sizes = c(5, 70),
+                  type = 'scatter', 
+                  mode = 'markers',
+                  color = ~ coronavirus_new$country,
+                  marker = list(sizemode = 'diameter' , opacity = 0.5),
+                  hoverinfo = 'text',
+                  text = ~paste("</br>", coronavirus_new$country, 
+                                "</br> Confirmed Cases: ", coronavirus_new$confirmed,
+                                "</br> Recovery Rate: ", paste(round(100 * coronavirus_new$recover_rate, 1), "%", sep = ""),
+                                "</br> Death Rate: ",  paste(round(100 * coronavirus_new$death_rate, 1), "%", sep = ""))) %>%
+  plotly::layout(yaxis = list(title = "Recovery Rate", ticksuffix = "%"),
+                 xaxis = list(title = "Death Rate", ticksuffix = "%", 
+                              dtick = 1, 
+                              tick0 = 0)) 
+```
+
+Also there are two functions after refactoring in the package which can simplify the input selection in the Shiny app and the process of making formatted tables. You can find that in the pckdown site.
 
 
 

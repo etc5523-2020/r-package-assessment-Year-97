@@ -2,17 +2,21 @@
 #'
 #' @description This function can provide a more concise way to select desired input in the Shiny app
 #'
-#' @param inputID The variable which shows in the SelectInput function
+#' @param ID The variable which shows in the SelectInput function
 #'
-#' @param chosen The information of the specific observation in that column which chose by the user
-#' 
 #' 
 #' @example 
-#' Inputselect("country", "US")
+#' Inputselect("country")
 #' 
+#' @return A shiny control which can choose the specfic inputs for the following presentation in the Shiny app 
 #' 
 #' @export
 #' 
-Inputselect <- function(inputID, chosen){
-  shiny::selectInput(inputId =  inputID, "Which country do you choose", choices = chosen)
+Inputselect <- function(ID){
+ corona_table <-  CovidYe::coronavirus %>% 
+      dplyr::select(date, country, type, cases) %>% 
+      dplyr::filter(country %in% c("US", "India", "Brazil", "Russia", "Peru", "Colombia", "Mexico", "South Africa", "Spain", "Argentina")) %>% 
+      dplyr::filter(type == "confirmed")
+ 
+      shiny::selectInput(inputId = ID, "Which country do you choose", choices = corona_table$country)
 }
