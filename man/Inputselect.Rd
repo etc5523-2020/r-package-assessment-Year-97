@@ -15,3 +15,9 @@ A shiny control which can choose the specfic inputs for the following presentati
 \description{
 This function can provide a more concise way to select desired input in the Shiny app
 }
+\examples{
+\dontrun{
+Inputselect("country")
+} 
+
+}

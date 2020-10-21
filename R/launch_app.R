@@ -5,11 +5,18 @@
 #' 
 #' @import shiny
 #' 
-#' @example 
+#' @examples
+#' \dontrun{
 #' launch_app()
+#' } 
 #' 
 #' @export
 
 launch_app <- function(){
-  shiny::runApp(system.file("app", "app.R", package = "CovidYe"))
+  appDir <- system.file("app", "app.R", package = "CovidYe")
+  if(appDir == ""){
+    stop("Could not find example directory. Try re-installing `CovidYe` package")
+  }
+  
+  shiny::runApp(appDir, display.mode = "normal")
 }

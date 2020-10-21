@@ -5,8 +5,10 @@
 #' @param ID The variable which shows in the SelectInput function
 #'
 #' 
-#' @example 
+#' @examples
+#' \dontrun{
 #' Inputselect("country")
+#' } 
 #' 
 #' @return A shiny control which can choose the specfic inputs for the following presentation in the Shiny app 
 #' 

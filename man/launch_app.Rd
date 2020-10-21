@@ -9,3 +9,9 @@ launch_app()
 \description{
 Runs the Covid-19 Shiny app which contains in the `CovidYe`` package.
 }
+\examples{
+\dontrun{
+launch_app()
+} 
+
+}

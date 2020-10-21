@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 [![R build status](https://github.com/etc5523-2020/r-package-assessment-Year-97/workflows/R-CMD-check/badge.svg)](https://github.com/etc5523-2020/r-package-assessment-Year-97/actions)
 <!-- badges: end -->
 
-The goal of CovidYe is to provide some basic information about COVID-19 of some countries and some functions about the interactive plots and tables in the Shiny app.
+CovidYe package is created by Chengzhi Ye, which is followed strictly by the package-instructions. It contains one Shiny App, one data set and three functions. The main purpose of CovidYe package is to provide the basic information about COVID-19 of the countries with most confirmed cases and some functions to create the interactive plots and tables which are contains in the Shiny App.
 
 ## Installation
 
@@ -29,7 +29,7 @@ The goal of CovidYe is to provide some basic information about COVID-19 of some 
 <!-- install.packages("CovidYe") -->
 <!-- ``` -->
 
-The development version can be installed from [GitHub](https://github.com/) with:
+The development version can be installed from [GitHub](https://github.com/etc5523-2020/r-package-assessment-Year-97) with:
 
 ``` r
 # install.packages("devtools")
@@ -37,7 +37,7 @@ devtools::install_github("etc5523-2020/r-package-assessment-Year-97")
 ```
 ## Example
 
-### A basic example about daily situation:
+### A simple presentation of coronavirus data set:
 
 ```{r, include=FALSE}
 library(CovidYe)
