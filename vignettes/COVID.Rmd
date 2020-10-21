@@ -32,7 +32,8 @@ The main goal of `CovidYe` package is to provide a shiny app called Covid-19 to 
 ```{r, include=FALSE}
 library(CovidYe)
 library(tibble)
-library(tidyverse)
+library(dplyr)
+library(tidyr)
 library(plotly)
 ```
 

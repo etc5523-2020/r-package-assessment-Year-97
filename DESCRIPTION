@@ -21,12 +21,13 @@ Imports:
     shinythemes,
     kableExtra,
     DT,
+    dplyr,
+    tidyr,
+    ggplot2,
+    plotly,
     magrittr
 Suggests: 
     knitr,
     rmarkdown,
-    tidyverse,
-    ggplot2,
-    plotly,
     testthat
 VignetteBuilder: knitr
