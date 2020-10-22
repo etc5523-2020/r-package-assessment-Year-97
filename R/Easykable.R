@@ -11,17 +11,19 @@
 #'
 #' @export
 
-Easykable <- function(n_country)
-  CovidYe::coronavirus %>% 
-   dplyr::select(country, type, cases) %>% 
-   dplyr::group_by(type, country) %>%
-   dplyr::summarise(total_cases = sum(cases)) %>%
-   tidyr::pivot_wider(names_from = type, values_from = total_cases) %>%
-   dplyr::arrange(-confirmed) %>%
-   utils::head(n_country) %>% 
-   kableExtra::kable(align = 'lccr', 
-                     format.args = list(big.mark = ",")) %>% 
-   kableExtra::kable_styling(
-     font_size = 15,
-     bootstrap_options = c("striped", "hover", "condensed")) %>% 
-  kableExtra::row_spec(1:n_country, color = "white",background = "grey")
+Easykable <- function(n_country) {
+   CovidYe::coronavirus %>% 
+      dplyr::select(country, type, cases) %>% 
+      dplyr::group_by(type, country) %>%
+      dplyr::summarise(total_cases = sum(cases)) %>%
+      tidyr::pivot_wider(names_from = type, values_from = total_cases) %>%
+      dplyr::arrange(-confirmed) %>%
+      utils::head(n_country) %>% 
+      kableExtra::kable(align = 'lccr', 
+                        format.args = list(big.mark = ",")) %>% 
+      kableExtra::kable_styling(
+         font_size = 15,
+         bootstrap_options = c("striped", "hover", "condensed")) %>% 
+      kableExtra::row_spec(1:n_country, color = "white",background = "grey")
+}
+  

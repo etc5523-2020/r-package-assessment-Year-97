@@ -4,20 +4,22 @@
 \alias{Inputselect}
 \title{Run the shiny:selectInput for the Covid-19 app}
 \usage{
-Inputselect(ID)
+Inputselect(ID, chosen_column)
 }
 \arguments{
-\item{ID}{The variable which shows in the SelectInput function}
+\item{ID}{The variable which shows the specific content of the cases chose by the user}
+
+\item{chosen_column}{The column in the specific data set which chose by users to show in the Shiny App}
 }
 \value{
 A shiny control which can choose the specfic inputs for the following presentation in the Shiny app
 }
 \description{
-This function can provide a more concise way to select desired input in the Shiny app
+This function can provide a more concise way to select desired input in the Shiny App
 }
 \examples{
 \dontrun{
-Inputselect("country")
+Inputselect("country", corona_table$country)
 } 
 
 }
