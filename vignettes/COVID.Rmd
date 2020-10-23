@@ -20,6 +20,8 @@ This vignette can describe the use of the `CovidYe` package, including how to la
 
 ## Installing CovidYe
 
+The development version can be installed from my [GitHub](https://github.com/etc5523-2020/r-package-assessment-Year-97) with:
+
 ```{r, eval=FALSE}
 # install.packages("devtools")
 devtools::install_github("etc5523-2020/r-package-assessment-Year-97")
@@ -49,6 +51,8 @@ The following table and interactive plot are provided by the functions contained
 
 ### The Daily Situation and Cumulative Cases:
 
+From the coronavirus data set in `CovidYe` package, you can easily understand the new confirmed cases, death and recovered cases in each day of the world, and have a clear understanding of the most serious period of time. 
+
 ```{r, echo=FALSE, warning=FALSE}
 coronavirus %>% 
   select(date, country, type, cases) %>% 
@@ -69,6 +73,10 @@ coronavirus %>%
 ```
 
 ### The overall change trend of COVID-19: 
+
+I also provide a different way for users to understand the basic situation in my COVID-19 Shiny App which contains in `CovidYe` package, ***the interactive plots***. 
+
+As shown in the figure below, users can learn about the specific situation of the day by clicking each point in the plot, which makes the content of the entire Shiny App more interesting and enables people to better understand the trend of COVID-19 epidemic situation.
 
 ```{r, echo=FALSE, warning=FALSE}
 corona_daily <- coronavirus %>% 
@@ -106,6 +114,8 @@ g <- plot_ly(corona_daily,
 
 ### The Current Situation of COVID-19 in Top 10 countries with most confirmed cases:
 
+In addition to the general trend of the COVID-19 epidemic situation, I also provide the specific situation of the ***top 20 countries*** with the most confirmed cases, and show them with the bubble map. When users click on each bubble, they can have a good idea about the situation of the specific country from the popup. Also the position of the bubbles have great significance to explore which can provide many useful information.
+
 ```{r bubblemap, echo=FALSE, warning=FALSE}
 coronavirus_new <- coronavirus %>% 
   group_by(country, type) %>%
@@ -137,7 +147,9 @@ coronavirus_new <- coronavirus %>%
                               tick0 = 0)) 
 ```
 
-Also there are two functions after refactoring in the package which can simplify the input selection in the Shiny app and the process of making formatted tables. You can find that in the pckdown site.
+## Noted
+
+Also there are ***two functions*** after refactoring in the package which can simplify the input selection in the Shiny app and the process of making formatted tables. You can find that in the `pckdown site`.
 
 
 

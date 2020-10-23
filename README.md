@@ -26,7 +26,7 @@ which are contains in the Shiny App.
 
 <!-- ``` -->
 
-The development version can be installed from
+The development version can be installed from my
 [GitHub](https://github.com/etc5523-2020/r-package-assessment-Year-97)
 with:
 

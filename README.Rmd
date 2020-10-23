@@ -29,7 +29,7 @@ CovidYe package is created by Chengzhi Ye, which is followed strictly by the pac
 <!-- install.packages("CovidYe") -->
 <!-- ``` -->
 
-The development version can be installed from [GitHub](https://github.com/etc5523-2020/r-package-assessment-Year-97) with:
+The development version can be installed from my [GitHub](https://github.com/etc5523-2020/r-package-assessment-Year-97) with:
 
 ``` r
 # install.packages("devtools")
