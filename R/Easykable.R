@@ -26,4 +26,4 @@ Easykable <- function(n_country) {
          bootstrap_options = c("striped", "hover", "condensed")) %>% 
       kableExtra::row_spec(1:n_country, color = "white",background = "grey")
 }
-  
+utils::globalVariables(c("country", "type", "cases", "total_cases", "confirmed")) 

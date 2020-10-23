@@ -16,7 +16,7 @@ basic information about COVID-19 of the countries with most confirmed
 cases and some functions to create the interactive plots and tables
 which are contains in the Shiny App.
 
-## Installation
+## Installation & Implementation
 
 <!-- You can install the released version of CovidYe from [CRAN](https://CRAN.R-project.org) with: -->
 
@@ -34,6 +34,9 @@ with:
 # install.packages("devtools")
 devtools::install_github("etc5523-2020/r-package-assessment-Year-97")
 ```
+
+After installing `CovidYe` package, you can type `launch_app()` in the
+console to run the `Covid-19` Shiny App.
 
 ## Example
 
@@ -579,3 +582,14 @@ totaldeath
 ### The overall change trend of COVID-19
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+
+## More Info about CovidYe Package
+
+The complete information and instruction can be seen in [my pkgdown
+website](https://etc5523-2020.github.io/r-package-assessment-Year-97/).
+
+Also there is a [distill
+blog](https://gifted-joliot-89880e.netlify.app/shiny.html) which is also
+designed by me. You can learn more information about my Shiny App and
+the COVID-19 basic situation in that site. Therefore, you are welcome to
+have a look.

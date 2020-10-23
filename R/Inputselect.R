@@ -23,3 +23,4 @@ Inputselect <- function(ID, chosen_column){
  
       shiny::selectInput(inputId = ID, "Which country do you choose", choices = chosen_column)
 }
+utils::globalVariables(c("country", "type", "cases"))
